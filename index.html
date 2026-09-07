@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="manifest" href="manifest.json"><title>Show do Milhão — Arduino + Redes</title>
+<title>Show do Milhão — Arduino + Redes</title>
 <style>
 *{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:radial-gradient(circle at top,#173b7a,#050b18 70%);color:#fff;min-height:100vh}
 .wrap{max-width:700px;margin:auto;padding:18px}.card{background:linear-gradient(180deg,#10285a,#07142f);border:2px solid #d8b34b;border-radius:20px;padding:22px;box-shadow:0 0 30px #0008}.hidden{display:none}
@@ -17,7 +17,7 @@ h1{text-align:center;margin:8px 0;color:#ffd84d;font-size:30px}.sub{text-align:c
 .small{font-size:13px;color:#9fb2d6;text-align:center}.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.actions .btn{font-size:13px;padding:11px}
 .result{text-align:center}.result h2{color:#ffd84d;font-size:27px}.big{font-size:40px;color:#ffe45c;font-weight:900}
 </style></head><body><div class="wrap">
-<div id="home" class="card"><img src="logo-show-do-milhao-redes.png" style="width:100%;max-width:420px;display:block;margin:10px auto;border-radius:15px;">
+<div id="home" class="card">
 <h1>🎤 SHOW DO MILHÃO</h1><div class="sub">🤖 ARDUINO • 🌐 REDES • MATERIAL DA PROVA</div>
 <p style="text-align:center">50 perguntas de Arduino e Redes, com alternativas parecidas para testar se você realmente sabe.</p>
 <button class="btn" onclick="start()">▶️ COMEÇAR</button>
@@ -51,7 +51,7 @@ function start(){pool=shuffle(questions.map((_,i)=>i));begin()}
 function review(){let w=JSON.parse(localStorage.getItem('milhaoWrong')||'[]'); pool=w.filter(i=>i>=0&&i<questions.length); if(!pool.length){alert('Você ainda não tem questões erradas para revisar.');return} begin()}
 function begin(){idx=0;money=0;correct=0;wrong=0;skipUsed=false;halfUsed=false;hideAll();$('game').classList.remove('hidden');load()}
 function load(){answered=false;time=30;clearInterval(timerId);$('timer').textContent='30 s';$('timer').classList.remove('urgent');$('skip').disabled=skipUsed;let q=questions[pool[idx]];$('count').textContent=(idx+1)+'/'+pool.length;$('score').textContent='R$ '+money.toLocaleString('pt-BR');$('prize').textContent='R$ '+(prizes[idx]||prizes[prizes.length-1]).toLocaleString('pt-BR');$('topic').textContent='Questão '+(idx+1);$('subject').textContent=q.topic||'';$('question').textContent=q.q;$('feedback').textContent='';let opts=shuffle(q.options.map((text,i)=>({text,correct:i===q.correct})));$('answers').innerHTML='';opts.forEach((o,i)=>{let b=document.createElement('button');b.className='btn answer';b.textContent=String.fromCharCode(65+i)+') '+o.text;b.dataset.correct=o.correct;b.onclick=()=>answer(b,!!o.correct);$('answers').appendChild(b)});timerId=setInterval(()=>{time--;$('timer').textContent=time+' s';if(time<=10)$('timer').classList.add('urgent');if(time<=0){clearInterval(timerId);timeout()}},1000)}
-function answer(btn,isCorrect){if(answered)return;();answered=true;if(isCorrect)new Audio('acertou-mizeravijk.mp3').play();clearInterval(timerId);let q=questions[pool[idx]];document.querySelectorAll('.answer').forEach(b=>b.disabled=true);if(isCorrect){btn.classList.add('correct');correct++;money=prizes[idx]||money;$('score').textContent='R$ '+money.toLocaleString('pt-BR');$('feedback').textContent='✅ CORRETO!';setTimeout(next,900)}else{btn.classList.add('wrong');wrong++;money=0;saveWrong(pool[idx]);$('feedback').textContent='❌ ERRADO! Você perdeu toda a premiação. Resposta correta: '+q.options[q.correct];setTimeout(()=>finish('wrong'),1900)}}
+function answer(btn,isCorrect){if(answered)return;answered=true;clearInterval(timerId);let q=questions[pool[idx]];document.querySelectorAll('.answer').forEach(b=>b.disabled=true);if(isCorrect){btn.classList.add('correct');correct++;money=prizes[idx]||money;$('score').textContent='R$ '+money.toLocaleString('pt-BR');$('feedback').textContent='✅ CORRETO!';setTimeout(next,900)}else{btn.classList.add('wrong');wrong++;money=0;saveWrong(pool[idx]);$('feedback').textContent='❌ ERRADO! Você perdeu toda a premiação. Resposta correta: '+q.options[q.correct];setTimeout(()=>finish('wrong'),1900)}}
 function next(){idx++;if(idx>=pool.length)finish('success');else load()}
 function finish(type){clearInterval(timerId);hideAll();$('result').classList.remove('hidden');$('resultMoney').textContent='R$ '+money.toLocaleString('pt-BR');if(type==='success'){$('resultTitle').textContent='🎉 PARABÉNS! VOCÊ CONCLUIU!';$('resultText').textContent='Você terminou a rodada com '+correct+' acertos.'}else if(type==='timeout'){$('resultTitle').textContent='⏰ TEMPO ESGOTADO!';$('resultText').textContent='Você perdeu toda a premiação.';money=0;$('resultMoney').textContent='R$ 0'}else{$('resultTitle').textContent='❌ VOCÊ ERROU!';$('resultText').textContent='Você perdeu toda a premiação.'}}
 function timeout(){money=0;saveWrong(pool[idx]);$('feedback').textContent='⏰ TEMPO ESGOTADO! Resposta correta: '+questions[pool[idx]].options[questions[pool[idx]].correct];finish('timeout')}
