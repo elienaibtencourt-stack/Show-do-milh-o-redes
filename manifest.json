@@ -9,5 +9,8 @@
   "start_url": "/",
   "theme_color": "#ffffff",
   "description": "Jogo educativo de perguntas e respostas sobre Redes de Computadores e Linguagem. Aprenda de forma divertida no estilo Show do Milhão.",
-  "lang": "pt"
+  "lang": "pt",
+  "categories": [
+    "education"
+  ]
 }
