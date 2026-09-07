@@ -1,0 +1,13 @@
+{
+  "background_color": "#ffffff",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Show do Milhão Rede e Linguagem",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "Show do milhão",
+  "start_url": "/",
+  "theme_color": "#ffffff",
+  "description": "Jogo educativo de perguntas e respostas sobre Redes de Computadores e Linguagem. Aprenda de forma divertida no estilo Show do Milhão.",
+  "lang": "pt"
+}
