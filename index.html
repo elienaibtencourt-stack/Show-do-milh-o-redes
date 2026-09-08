@@ -47,7 +47,7 @@ const $=id=>document.getElementById(id);
   let soundOn = true;
   let bgMusic = new Audio('show-do-milhao02.mp3');
 bgMusic.loop = true;
-window.addEventListener('load',()=>{if(soundOn)bgMusic.play().catch(()=>{});});
+document.addEventListener('click',()=>{if(soundOn)bgMusic.play().catch(()=>{});},{once:true});
 
 function toggleSound(){
   soundOn = !soundOn;
