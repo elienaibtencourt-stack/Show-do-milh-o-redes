@@ -51,14 +51,11 @@ const $=id=>document.getElementById(id);
   let soundOn = true;
   let bgMusic = new Audio('show-do-milhao02.mp3');
 bgMusic.loop = true;
-  const somCerto = new Audio('acertou-mizeravijk.mp3');
-const somErrado = new Audio('errada-portiolli.mp3');
+  let soundOn = true;
+let bgMusic = new Audio('show-do-milhao02.mp3');
+bgMusic.loop = true;
 
-somCerto.preload = 'auto';
-somErrado.preload = 'auto';
-
-somCerto.load();
-somErrado.load();
+document.addEventListener('touchstart', ...
 document.addEventListener('touchstart',()=>{if(soundOn){bgMusic.play().catch(()=>{});}});
 
 function toggleSound(){
