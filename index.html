@@ -51,13 +51,6 @@ function toggleSound(){
   document.getElementById('soundBtn').textContent =
     soundOn ? '🔊 SOM: LIGADO' : '🔇 SOM: DESLIGADO';
 }
-  let soundOn = true;
-
-function toggleSound(){
-  soundOn = !soundOn;
-  document.getElementById('soundBtn').textContent =
-    soundOn ? '🔊 SOM: LIGADO' : '🔇 SOM: DESLIGADO';
-}
 function hideAll(){['home','game','result','stats'].forEach(x=>$(x).classList.add('hidden'))}
 function goHome(){clearInterval(timerId);hideAll();$('home').classList.remove('hidden')}
 function shuffle(a){return a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(x=>x[1])}
