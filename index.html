@@ -45,6 +45,9 @@ const prizes = [1000,1500,2000,2500,3000,4000,5000,6000,7000,8000,10000,12000,15
 let pool=[],idx=0,money=0,correct=0,wrong=0,skipUsed=false,halfUsed=false,timerId=null,time=30,answered=false;
 const $=id=>document.getElementById(id);
   let soundOn = true;
+  let bgMusic = new Audio('show-do-milhao02.mp3');
+bgMusic.loop = true;
+window.addEventListener('load',()=>{if(soundOn)bgMusic.play().catch(()=>{});});
 
 function toggleSound(){
   soundOn = !soundOn;
