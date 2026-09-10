@@ -3,15 +3,15 @@
 <div id="home" class="card">
 <button id="soundBtn" class="btn sound" onclick="toggleSound()">🔊 SOM: LIGADO</button>
 <h1>🎤 SHOW DO MILHÃO</h1>
-<div class="sub">🌐 REDES &nbsp; • &nbsp; 💻 PROGRAMAÇÃO &nbsp; • &nbsp; 🇬🇧 INGLÊS APLICADO &nbsp; • &nbsp; ⚙️ CLP &nbsp; • &nbsp; 📘 GESTÃO DO CICLO DE VIDA</div>
+<div class="sub">🇬🇧 INGLÊS APLICADO &nbsp; • &nbsp; ⚙️ CLP &nbsp; • &nbsp; 📘 GESTÃO DO CICLO DE VIDA</div>
 <p style="text-align:center;color:#ffd84d;font-weight:bold;margin:8px 0 14px">Produzido por Elienai Bitencourt</p>
 <p style="text-align:center">Escolha seu desafio e teste seus conhecimentos!</p>
-<button class="btn mode" onclick="startMode('redes')">🌐 JOGAR REDES</button>
-<button class="btn mode" onclick="startMode('programacao')">💻 JOGAR PROGRAMAÇÃO</button><button class="btn mode" onclick="startMode('ingles')">🇬🇧 JOGAR INGLÊS APLICADO</button>
+
+<button class="btn mode" onclick="startMode('ingles')">🇬🇧 JOGAR INGLÊS APLICADO</button>
 <button class="btn mode" onclick="startMode('clp')">⚙️ JOGAR CLP</button><button class="btn mode" onclick="startMode('gcv')">📘 JOGAR GESTÃO DO CICLO DE VIDA</button>
 <button class="btn mode" onclick="review()">🔄 REVISAR ERROS</button>
 <button class="btn mode" onclick="stats()">📊 ESTATÍSTICAS</button>
-<p class="small">361 perguntas no banco • 68 Redes • 43 Programação • 100 Inglês Aplicado • 100 CLP • 50 Gestão do Ciclo de Vida • 3 cartas • 2 pulos • Parar • 40 segundos</p>
+<p class="small">250 perguntas no banco • 100 Inglês Aplicado • 100 CLP • 50 Gestão do Ciclo de Vida • 3 cartas • 2 pulos • Parar • 40 segundos</p>
 <p class="small" style="color:#ffd84d;margin-top:12px">© 2026 Elienai Bitencourt • ConAuto</p></div>
 <div id="game" class="card hidden"><div class="top"><div class="pill" id="count">1/57</div><div class="pill" id="score">R$ 0</div></div><div class="money" id="prize">R$ 1.000</div><div class="timer-label">⏱️ TEMPO PARA RESPONDER</div><div id="timer" class="timer">40 s</div><div class="qnum" id="topic">Questão</div><div class="subject" id="subject"></div><div class="question" id="question"></div><div id="answers"></div><div class="feedback" id="feedback"></div><div class="actions"><button class="btn" id="card3" onclick="removeRandom(3)">🃏 -3</button><button class="btn" id="card2" onclick="removeRandom(2)">🃏 -2</button><button class="btn" id="card1" onclick="removeRandom(1)">🃏 -1</button><button class="btn" id="skip1" onclick="skip()">⏭️ PULAR 1</button><button class="btn" id="skip2" onclick="skip()">⏭️ PULAR 2</button><button class="btn" onclick="stopGame()">🛑 PARAR</button></div></div>
 <div id="result" class="card hidden result"><h2 id="resultTitle"></h2><div class="big" id="resultMoney"></div><p id="resultText"></p><button class="btn" onclick="start()">▶️ JOGAR NOVAMENTE</button><button class="btn" onclick="goHome()">🏠 VOLTAR AO INÍCIO</button></div>
