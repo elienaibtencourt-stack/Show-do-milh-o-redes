@@ -45,7 +45,7 @@ window.addEventListener('load', function(){
 <button class="btn mode" onclick="startMode('clp')">⚙️ JOGAR CLP</button><button class="btn mode" onclick="startMode('gcv')">📘 JOGAR GESTÃO DO CICLO DE VIDA</button>
 <button class="btn mode" onclick="toggleEstudo6()">📚 ESTUDO 6º ANO</button>
 <div id="estudo6Panel" class="estudo6-panel hidden">
-  <button class="btn mode" onclick="estudo6Materia('historia')">🏛️ HISTÓRIA</button>
+  <button class="btn mode" onclick="startHistoria6()">🏛️ HISTÓRIA — 30 QUESTÕES</button>
   <button class="btn mode" onclick="estudo6Materia('ciencias')">🔬 CIÊNCIAS</button>
 </div>
 <button class="btn mode" onclick="review()">🔄 REVISAR ERROS</button>
@@ -97,11 +97,22 @@ function toggleEstudo6(){
   const p=document.getElementById('estudo6Panel');
   if(p) p.classList.toggle('hidden');
 }
-function estudo6Materia(materia){
-  if(materia==='historia'){
-    startMode('historia');
+function startHistoria6(){
+  gameMode='historia';
+  const indices=[];
+  for(let i=0;i<questions.length;i++){
+    const t=String(questions[i].topic||'');
+    if(t.includes('História – Roma Antiga')) indices.push(i);
+  }
+  if(!indices.length){
+    alert('As questões de História não foram encontradas no banco.');
     return;
   }
+  pool=shuffle(indices);
+  begin();
+}
+function estudo6Materia(materia){
+  if(materia==='historia'){ startHistoria6(); return; }
   const nomes={historia:'História',ciencias:'Ciências'};
   alert('📚 6º ANO — '+(nomes[materia]||materia)+'\n\nA matéria está preparada para receber o banco de questões.');
 }
